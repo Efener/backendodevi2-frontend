@@ -39,8 +39,9 @@ function Chat() {
     e.preventDefault();
     if (!input.trim()) return;
 
-    // Gateway'e mesaj gönder
-    await fetch(`/api/chat/${CHAT_ID}/message`, {
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+    await fetch(`${API_BASE_URL}/api/chat/${CHAT_ID}/message`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ sender, text: input }),
